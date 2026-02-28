@@ -1,6 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import heroBg from "@/assets/hero-bg.jpg";
+import Hero3DScene from "./Hero3DScene";
 
 const HeroSection = () => {
   const ref = useRef<HTMLDivElement>(null);
@@ -16,24 +17,17 @@ const HeroSection = () => {
   return (
     <section id="home" ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Parallax BG */}
-      <motion.div
-        style={{ y, scale }}
-        className="absolute inset-0 z-0"
-      >
-        <img
-          src={heroBg}
-          alt="City skyline"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-background/70" />
-        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+      <motion.div style={{ y, scale }} className="absolute inset-0 z-0">
+        <img src={heroBg} alt="City skyline" className="w-full h-full object-cover" />
+        <div className="absolute inset-0 bg-background/75" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
       </motion.div>
 
+      {/* 3D Scene */}
+      <Hero3DScene />
+
       {/* Content */}
-      <motion.div
-        style={{ opacity }}
-        className="relative z-10 container mx-auto px-6 text-center"
-      >
+      <motion.div style={{ opacity }} className="relative z-10 container mx-auto px-6 text-center">
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
@@ -49,6 +43,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.15, ease: [0.23, 1, 0.32, 1] }}
           className="font-heading text-4xl sm:text-5xl md:text-7xl font-bold leading-tight mb-6 max-w-4xl mx-auto"
+          style={{ textShadow: "0 4px 30px hsla(222, 47%, 6%, 0.8)" }}
         >
           Flexible Mortgage Solutions &{" "}
           <span className="gold-gradient-text">High-Yield</span> Investments
@@ -59,6 +54,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.23, 1, 0.32, 1] }}
           className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-10"
+          style={{ textShadow: "0 2px 10px hsla(222, 47%, 6%, 0.5)" }}
         >
           A trusted Canadian private mortgage lender helping borrowers access fast, 
           flexible funding while offering investors stable, secured returns.
@@ -72,13 +68,14 @@ const HeroSection = () => {
         >
           <a
             href="#lending"
-            className="px-8 py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-lg transition-all duration-300 hover:shadow-[0_0_40px_hsla(40,85%,55%,0.35)] hover:scale-105"
+            className="px-8 py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-lg transition-all duration-300 hover:shadow-[0_0_40px_hsla(40,85%,55%,0.35)] hover:scale-105 relative overflow-hidden group"
           >
-            Apply for a Mortgage
+            <span className="relative z-10">Apply for a Mortgage</span>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-foreground/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
           </a>
           <a
             href="#invest"
-            className="px-8 py-4 rounded-xl border border-primary/30 text-foreground font-semibold text-lg transition-all duration-300 hover:bg-primary/10 hover:border-primary/50 hover:scale-105 backdrop-blur-sm"
+            className="px-8 py-4 rounded-xl border border-primary/30 text-foreground font-semibold text-lg transition-all duration-300 hover:bg-primary/10 hover:border-primary/50 hover:scale-105 backdrop-blur-md"
           >
             Start Investing
           </a>

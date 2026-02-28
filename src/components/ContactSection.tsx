@@ -1,6 +1,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Mail, Phone, MapPin, Clock, Send } from "lucide-react";
+import { GlobeIllustration } from "./Illustrations3D";
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -15,7 +16,6 @@ const ContactSection = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Form submission placeholder
     alert("Thank you! We'll be in touch shortly.");
   };
 
@@ -37,13 +37,16 @@ const ContactSection = () => {
         </motion.div>
 
         <div className="grid lg:grid-cols-5 gap-10 max-w-5xl mx-auto">
-          {/* Info */}
+          {/* Info + Globe */}
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
             className="lg:col-span-2 space-y-6"
           >
+            <div className="flex justify-center lg:justify-start mb-4">
+              <GlobeIllustration className="w-36 h-36" />
+            </div>
             {[
               { icon: Mail, label: "Email", value: "info@zlafin.ca" },
               { icon: Phone, label: "Phone", value: "+1 (XXX) XXX-XXXX" },
@@ -52,12 +55,12 @@ const ContactSection = () => {
             ].map((item, i) => (
               <motion.div
                 key={item.label}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
+                initial={{ opacity: 0, x: -20, rotateY: -10 }}
+                animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 + 0.1 * i }}
-                className="flex items-start gap-4"
+                className="flex items-start gap-4 group"
               >
-                <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                <div className="w-11 h-11 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 transition-all duration-300 group-hover:bg-primary/20 group-hover:shadow-[0_0_20px_hsla(40,85%,55%,0.2)] group-hover:scale-110">
                   <item.icon className="w-5 h-5 text-primary" />
                 </div>
                 <div>
@@ -70,11 +73,12 @@ const ContactSection = () => {
 
           {/* Form */}
           <motion.form
-            initial={{ opacity: 0, x: 40 }}
-            animate={inView ? { opacity: 1, x: 0 } : {}}
+            initial={{ opacity: 0, x: 40, rotateY: 5 }}
+            animate={inView ? { opacity: 1, x: 0, rotateY: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
             onSubmit={handleSubmit}
-            className="lg:col-span-3 glass-panel rounded-2xl p-8 gold-border-glow space-y-5"
+            className="lg:col-span-3 glass-panel rounded-2xl p-8 gold-border-glow space-y-5 card-3d"
+            style={{ perspective: "1000px" }}
           >
             <div className="grid sm:grid-cols-2 gap-5">
               <input
@@ -83,7 +87,7 @@ const ContactSection = () => {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all focus:shadow-[0_0_15px_hsla(40,85%,55%,0.1)]"
               />
               <input
                 type="email"
@@ -91,7 +95,7 @@ const ContactSection = () => {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all focus:shadow-[0_0_15px_hsla(40,85%,55%,0.1)]"
               />
             </div>
             <div className="grid sm:grid-cols-2 gap-5">
@@ -100,7 +104,7 @@ const ContactSection = () => {
                 placeholder="Phone"
                 value={formData.phone}
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all"
+                className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all focus:shadow-[0_0_15px_hsla(40,85%,55%,0.1)]"
               />
               <select
                 value={formData.purpose}
@@ -116,14 +120,17 @@ const ContactSection = () => {
               rows={4}
               value={formData.message}
               onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all resize-none"
+              className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all resize-none focus:shadow-[0_0_15px_hsla(40,85%,55%,0.1)]"
             />
             <button
               type="submit"
-              className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-lg flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_40px_hsla(40,85%,55%,0.35)] hover:scale-[1.02]"
+              className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-lg flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_0_40px_hsla(40,85%,55%,0.35)] hover:scale-[1.02] relative overflow-hidden group"
             >
-              <Send className="w-5 h-5" />
-              Send Message
+              <span className="relative z-10 flex items-center gap-2">
+                <Send className="w-5 h-5" />
+                Send Message
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-foreground/10 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
             </button>
           </motion.form>
         </div>

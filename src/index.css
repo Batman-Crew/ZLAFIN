@@ -6,48 +6,48 @@
 
 @layer base {
   :root {
-    --background: 222 47% 6%;
-    --foreground: 40 20% 92%;
+    --background: 45 30% 97%;
+    --foreground: 222 47% 11%;
 
-    --card: 222 40% 10%;
-    --card-foreground: 40 20% 92%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
 
-    --popover: 222 40% 10%;
-    --popover-foreground: 40 20% 92%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
 
-    --primary: 40 85% 55%;
-    --primary-foreground: 222 47% 6%;
+    --primary: 35 85% 48%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 222 30% 16%;
-    --secondary-foreground: 40 20% 92%;
+    --secondary: 45 20% 92%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 222 25% 14%;
-    --muted-foreground: 220 15% 55%;
+    --muted: 45 15% 93%;
+    --muted-foreground: 222 15% 45%;
 
-    --accent: 40 70% 45%;
-    --accent-foreground: 222 47% 6%;
+    --accent: 35 70% 42%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 222 20% 18%;
-    --input: 222 20% 18%;
-    --ring: 40 85% 55%;
+    --border: 45 15% 88%;
+    --input: 45 15% 88%;
+    --ring: 35 85% 48%;
 
     --radius: 0.75rem;
 
-    --glass: 222 40% 12% / 0.6;
-    --glass-border: 40 85% 55% / 0.15;
-    --gold-glow: 40 85% 55% / 0.3;
+    --glass: 0 0% 100% / 0.7;
+    --glass-border: 35 85% 48% / 0.15;
+    --gold-glow: 35 85% 48% / 0.15;
 
-    --sidebar-background: 222 40% 8%;
-    --sidebar-foreground: 40 20% 92%;
-    --sidebar-primary: 40 85% 55%;
-    --sidebar-primary-foreground: 222 47% 6%;
-    --sidebar-accent: 222 30% 16%;
-    --sidebar-accent-foreground: 40 20% 92%;
-    --sidebar-border: 222 20% 18%;
-    --sidebar-ring: 40 85% 55%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 35 85% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 45 20% 92%;
+    --sidebar-accent-foreground: 222 47% 11%;
+    --sidebar-border: 45 15% 88%;
+    --sidebar-ring: 35 85% 48%;
   }
 }
 
@@ -68,33 +68,36 @@
 @layer components {
   .glass-panel {
     @apply bg-glass backdrop-blur-xl border border-glass-border;
+    box-shadow: 0 8px 32px hsla(222, 20%, 20%, 0.06);
   }
 
   .glass-navbar {
-    background: hsla(222, 40%, 8%, 0.7);
+    background: hsla(0, 0%, 100%, 0.85);
     backdrop-filter: blur(24px) saturate(180%);
-    border-bottom: 1px solid hsla(40, 85%, 55%, 0.1);
-    box-shadow: 0 4px 30px hsla(222, 47%, 6%, 0.5),
-                inset 0 1px 0 hsla(40, 85%, 55%, 0.08);
+    border-bottom: 1px solid hsla(35, 85%, 48%, 0.1);
+    box-shadow: 0 4px 30px hsla(222, 20%, 20%, 0.06),
+                inset 0 1px 0 hsla(0, 0%, 100%, 0.5);
   }
 
   .gold-gradient-text {
     @apply bg-clip-text text-transparent;
-    background-image: linear-gradient(135deg, hsl(40, 85%, 65%), hsl(35, 90%, 50%), hsl(40, 85%, 65%));
+    background-image: linear-gradient(135deg, hsl(35, 90%, 50%), hsl(25, 95%, 40%), hsl(35, 90%, 50%));
   }
 
   .card-3d {
     transform-style: preserve-3d;
-    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.5s ease;
   }
 
   .card-3d:hover {
-    transform: perspective(1000px) rotateY(-5deg) rotateX(5deg) translateZ(20px);
+    transform: perspective(1000px) rotateY(-3deg) rotateX(3deg) translateZ(10px);
+    box-shadow: 0 20px 60px hsla(222, 20%, 20%, 0.1);
   }
 
   .gold-border-glow {
-    box-shadow: 0 0 20px hsla(40, 85%, 55%, 0.1),
-                inset 0 1px 0 hsla(40, 85%, 55%, 0.1);
+    box-shadow: 0 4px 20px hsla(35, 85%, 48%, 0.06),
+                0 1px 3px hsla(222, 20%, 20%, 0.05);
+    border: 1px solid hsla(35, 85%, 48%, 0.12);
   }
 
   .section-glow {
@@ -109,7 +112,7 @@
     transform: translateX(-50%);
     width: 60%;
     height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(40, 85%, 55%, 0.4), transparent);
+    background: linear-gradient(90deg, transparent, hsl(35, 85%, 48%, 0.3), transparent);
   }
 
   .float-animation {
@@ -127,8 +130,12 @@
   }
 
   .shimmer {
-    background: linear-gradient(90deg, transparent, hsla(40, 85%, 55%, 0.1), transparent);
+    background: linear-gradient(90deg, transparent, hsla(35, 85%, 48%, 0.08), transparent);
     background-size: 200% 100%;
     animation: shimmer 3s ease-in-out infinite;
+  }
+
+  .page-container {
+    @apply min-h-screen pt-20;
   }
 }

@@ -1,7 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef, useMemo } from "react";
 
-/** Floating 3D geometric shapes that appear between sections */
 const FloatingElements = () => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll();
@@ -34,37 +33,33 @@ const FloatingElements = () => {
           {el.shape === "diamond" && (
             <svg viewBox="0 0 50 50" className="w-full h-full">
               <motion.rect
-                x="10"
-                y="10"
-                width="30"
-                height="30"
-                rx="4"
+                x="10" y="10" width="30" height="30" rx="4"
                 fill="none"
-                stroke="hsl(40, 85%, 55%)"
+                stroke="hsl(35, 85%, 50%)"
                 strokeWidth="1"
-                opacity="0.15"
+                opacity="0.1"
                 transform="rotate(45 25 25)"
               />
             </svg>
           )}
           {el.shape === "circle" && (
             <svg viewBox="0 0 50 50" className="w-full h-full">
-              <circle cx="25" cy="25" r="20" fill="none" stroke="hsl(40, 85%, 55%)" strokeWidth="1" opacity="0.12" />
+              <circle cx="25" cy="25" r="20" fill="none" stroke="hsl(35, 85%, 50%)" strokeWidth="1" opacity="0.08" />
             </svg>
           )}
           {el.shape === "square" && (
             <svg viewBox="0 0 50 50" className="w-full h-full">
-              <rect x="10" y="10" width="30" height="30" rx="3" fill="hsl(40, 85%, 55%)" opacity="0.06" />
+              <rect x="10" y="10" width="30" height="30" rx="3" fill="hsl(35, 85%, 50%)" opacity="0.04" />
             </svg>
           )}
           {el.shape === "triangle" && (
             <svg viewBox="0 0 50 50" className="w-full h-full">
-              <polygon points="25,5 45,40 5,40" fill="none" stroke="hsl(40, 85%, 55%)" strokeWidth="1" opacity="0.12" />
+              <polygon points="25,5 45,40 5,40" fill="none" stroke="hsl(35, 85%, 50%)" strokeWidth="1" opacity="0.08" />
             </svg>
           )}
           {el.shape === "dot" && (
             <svg viewBox="0 0 50 50" className="w-full h-full">
-              <circle cx="25" cy="25" r="8" fill="hsl(40, 85%, 55%)" opacity="0.08" />
+              <circle cx="25" cy="25" r="8" fill="hsl(35, 85%, 50%)" opacity="0.05" />
             </svg>
           )}
         </motion.div>

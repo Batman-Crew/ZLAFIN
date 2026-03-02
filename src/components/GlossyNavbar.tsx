@@ -1,18 +1,21 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import { Link, useLocation } from "react-router-dom";
 
 const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Lending", href: "#lending" },
-  { label: "Invest", href: "#invest" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "How It Works", href: "/how-it-works" },
+  { label: "Lending", href: "/lending" },
+  { label: "Invest", href: "/invest" },
+  { label: "Contact", href: "/contact" },
 ];
 
 const GlossyNavbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -26,34 +29,40 @@ const GlossyNavbar = () => {
       animate={{ y: 0 }}
       transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "glass-navbar py-3" : "py-5"
+        scrolled ? "glass-navbar py-3" : "py-5 bg-background/50 backdrop-blur-sm"
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-6">
-        <a href="#home" className="relative z-10">
+        <Link to="/" className="relative z-10">
           <span className="font-heading text-2xl font-bold gold-gradient-text tracking-wider">
             ZLAFIN
           </span>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-1">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.label}
-              href={item.href}
-              className="relative px-5 py-2 text-sm font-medium text-muted-foreground transition-colors duration-300 hover:text-primary rounded-lg hover:bg-primary/5 group"
+              to={item.href}
+              className={`relative px-4 py-2 text-sm font-medium transition-colors duration-300 rounded-lg group ${
+                location.pathname === item.href
+                  ? "text-primary bg-primary/5"
+                  : "text-muted-foreground hover:text-primary hover:bg-primary/5"
+              }`}
             >
               {item.label}
-              <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-[2px] bg-primary transition-all duration-300 group-hover:w-3/4 rounded-full" />
-            </a>
+              <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-[2px] bg-primary transition-all duration-300 rounded-full ${
+                location.pathname === item.href ? "w-3/4" : "w-0 group-hover:w-3/4"
+              }`} />
+            </Link>
           ))}
-          <a
-            href="#contact"
-            className="ml-4 px-6 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm transition-all duration-300 hover:shadow-[0_0_30px_hsla(40,85%,55%,0.3)] hover:scale-105"
+          <Link
+            to="/contact"
+            className="ml-4 px-6 py-2.5 rounded-lg bg-primary text-primary-foreground font-semibold text-sm transition-all duration-300 hover:shadow-[0_4px_20px_hsla(35,85%,48%,0.3)] hover:scale-105"
           >
             Get Started
-          </a>
+          </Link>
         </div>
 
         {/* Mobile toggle */}
@@ -76,14 +85,18 @@ const GlossyNavbar = () => {
           >
             <div className="flex flex-col px-6 py-4 gap-2">
               {navItems.map((item) => (
-                <a
+                <Link
                   key={item.label}
-                  href={item.href}
+                  to={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="px-4 py-3 text-foreground hover:text-primary transition-colors rounded-lg hover:bg-primary/5"
+                  className={`px-4 py-3 transition-colors rounded-lg ${
+                    location.pathname === item.href
+                      ? "text-primary bg-primary/5"
+                      : "text-foreground hover:text-primary hover:bg-primary/5"
+                  }`}
                 >
                   {item.label}
-                </a>
+                </Link>
               ))}
             </div>
           </motion.div>

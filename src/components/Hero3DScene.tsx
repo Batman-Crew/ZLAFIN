@@ -15,9 +15,9 @@ const GoldBox = ({ position, scale, speed }: { position: [number, number, number
       <mesh ref={ref} position={position} scale={scale}>
         <boxGeometry args={[1, 1, 1]} />
         <meshStandardMaterial
-          color="#c9943e"
-          metalness={0.9}
-          roughness={0.15}
+          color="#c49035"
+          metalness={0.85}
+          roughness={0.2}
           envMapIntensity={1.5}
         />
       </mesh>
@@ -35,9 +35,9 @@ const GoldSphere = ({ position, scale, speed }: { position: [number, number, num
     <mesh ref={ref} position={position} scale={scale}>
       <sphereGeometry args={[1, 32, 32]} />
       <meshStandardMaterial
-        color="#d4a843"
-        metalness={0.95}
-        roughness={0.1}
+        color="#d4a040"
+        metalness={0.9}
+        roughness={0.15}
         envMapIntensity={2}
       />
     </mesh>
@@ -64,7 +64,7 @@ const GlassTorus = ({ position, scale, speed }: { position: [number, number, num
           distortion={0.1}
           distortionScale={0.2}
           temporalDistortion={0.1}
-          color="#1a2744"
+          color="#f5efe6"
           transmissionSampler={false}
         />
       </mesh>
@@ -95,7 +95,7 @@ const Octahedron = ({ position, scale, speed }: { position: [number, number, num
 };
 
 const Particles = () => {
-  const count = 80;
+  const count = 60;
   const positions = useMemo(() => {
     const pos = new Float32Array(count * 3);
     for (let i = 0; i < count; i++) {
@@ -122,7 +122,7 @@ const Particles = () => {
           itemSize={3}
         />
       </bufferGeometry>
-      <pointsMaterial size={0.04} color="#c9943e" transparent opacity={0.6} sizeAttenuation />
+      <pointsMaterial size={0.04} color="#c49035" transparent opacity={0.4} sizeAttenuation />
     </points>
   );
 };
@@ -136,10 +136,10 @@ const Hero3DScene = () => {
         gl={{ antialias: true, alpha: true }}
         style={{ background: "transparent" }}
       >
-        <ambientLight intensity={0.3} />
-        <directionalLight position={[5, 5, 5]} intensity={1.2} color="#ffd700" />
-        <directionalLight position={[-5, 3, -5]} intensity={0.5} color="#4a6fa5" />
-        <pointLight position={[0, -3, 3]} intensity={0.8} color="#c9943e" />
+        <ambientLight intensity={0.6} />
+        <directionalLight position={[5, 5, 5]} intensity={1} color="#ffd700" />
+        <directionalLight position={[-5, 3, -5]} intensity={0.4} color="#8ba4c4" />
+        <pointLight position={[0, -3, 3]} intensity={0.6} color="#c49035" />
 
         <GoldBox position={[-4.5, 2, -2]} scale={0.6} speed={1.2} />
         <GoldBox position={[4.2, -1.5, -1]} scale={0.45} speed={0.9} />

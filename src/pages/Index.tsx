@@ -1,15 +1,15 @@
 import GlossyNavbar from "@/components/GlossyNavbar";
 import HeroSection from "@/components/HeroSection";
 import FooterSection from "@/components/FooterSection";
-import FloatingElements from "@/components/FloatingElements";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background relative">
       <GlossyNavbar />
-      <FloatingElements />
-      <HeroSection />
-      <FooterSection />
+      <main className="relative z-10">
+        <HeroSection />
+        <FooterSection />
+      </main>
     </div>
   );
 };

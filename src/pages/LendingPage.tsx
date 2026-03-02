@@ -1,14 +1,14 @@
 import GlossyNavbar from "@/components/GlossyNavbar";
 import LendingSection from "@/components/LendingSection";
 import FooterSection from "@/components/FooterSection";
-import FloatingElements from "@/components/FloatingElements";
 
 const LendingPage = () => (
-  <div className="min-h-screen bg-background">
+  <div className="min-h-screen bg-background relative">
     <GlossyNavbar />
-    <FloatingElements />
-    <LendingSection />
-    <FooterSection />
+    <main className="relative z-10">
+      <LendingSection />
+      <FooterSection />
+    </main>
   </div>
 );
 

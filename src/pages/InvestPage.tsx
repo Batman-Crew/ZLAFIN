@@ -1,14 +1,14 @@
 import GlossyNavbar from "@/components/GlossyNavbar";
 import InvestmentSection from "@/components/InvestmentSection";
 import FooterSection from "@/components/FooterSection";
-import FloatingElements from "@/components/FloatingElements";
 
 const InvestPage = () => (
-  <div className="min-h-screen bg-background">
+  <div className="min-h-screen bg-background relative">
     <GlossyNavbar />
-    <FloatingElements />
-    <InvestmentSection />
-    <FooterSection />
+    <main className="relative z-10">
+      <InvestmentSection />
+      <FooterSection />
+    </main>
   </div>
 );
 

@@ -58,10 +58,34 @@
 
   body {
     @apply bg-background text-foreground font-body antialiased;
+    overflow-x: hidden;
   }
 
   html {
     scroll-behavior: smooth;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: hsl(45, 30%, 97%);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: hsla(35, 85%, 48%, 0.3);
+    border-radius: 3px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsla(35, 85%, 48%, 0.5);
+  }
+
+  ::selection {
+    background: hsla(35, 85%, 48%, 0.2);
+    color: hsl(222, 47%, 11%);
   }
 }
 
@@ -98,6 +122,11 @@
     box-shadow: 0 4px 20px hsla(35, 85%, 48%, 0.06),
                 0 1px 3px hsla(222, 20%, 20%, 0.05);
     border: 1px solid hsla(35, 85%, 48%, 0.12);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+  }
+
+  .gold-border-glow:hover {
+    border-color: hsla(35, 85%, 48%, 0.25);
   }
 
   .section-glow {
@@ -137,5 +166,73 @@
 
   .page-container {
     @apply min-h-screen pt-20;
+  }
+
+  /* Smooth reveal animations */
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeScale {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes textReveal {
+    from {
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
+  .animate-fade-scale {
+    animation: fadeScale 0.6s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+
+  /* Cursor glow effect */
+  .cursor-glow {
+    position: fixed;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, hsla(35, 85%, 48%, 0.04), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
+    transform: translate(-50%, -50%);
+    transition: opacity 0.3s ease;
+  }
+
+  /* Section backgrounds with subtle gradients */
+  section:nth-child(even) {
+    position: relative;
+  }
+
+  section:nth-child(even)::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, transparent, hsla(35, 85%, 48%, 0.02), transparent);
+    pointer-events: none;
   }
 }

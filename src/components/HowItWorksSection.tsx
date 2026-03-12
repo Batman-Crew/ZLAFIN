@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { motion, useInView, useScroll, useTransform } from "framer-motion";
+import { DocumentIllustration, HandshakeIllustration } from "./Illustrations3D";
 
 
 const steps = [
@@ -19,20 +20,23 @@ const HowItWorksSection = () => {
   return (
     <section id="how-it-works" ref={containerRef} className="relative py-24 overflow-hidden page-container">
 
-      {/* Decorative SVG curvy lines */}
+      {/* Rich background patterns */}
       <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 cross-pattern opacity-60" />
+        <div className="absolute top-20 -left-20 w-[450px] h-[450px] gradient-orb rounded-full" />
+        <div className="absolute bottom-20 -right-20 w-[400px] h-[400px] gradient-orb-lg rounded-full" />
         <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="none" fill="none">
-          <path d="M-80 180 C250 80, 550 320, 900 200 S1250 80, 1520 250" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.05" />
-          <path d="M-80 550 C300 450, 600 680, 950 530 S1300 420, 1520 600" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.04" />
+          <path d="M-80 180 C250 80, 550 320, 900 200 S1250 80, 1520 250" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.07" />
+          <path d="M-80 550 C300 450, 600 680, 950 530 S1300 420, 1520 600" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.05" />
+          <path d="M-80 750 C200 680, 500 820, 850 700 S1200 600, 1520 750" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.04" />
         </svg>
-        <svg className="absolute top-12 right-20 w-36 h-36 opacity-[0.03]" viewBox="0 0 200 200">
-          <polygon points="100,10 190,75 160,170 40,170 10,75" stroke="hsl(35, 85%, 48%)" strokeWidth="1" fill="none" />
-          <polygon points="100,40 155,80 140,140 60,140 45,80" stroke="hsl(35, 85%, 48%)" strokeWidth="0.7" fill="none" />
-        </svg>
-        <svg className="absolute bottom-16 left-16 w-32 h-32 opacity-[0.025]" viewBox="0 0 200 200">
-          <path d="M30 170 L100 30 L170 170 Z" stroke="hsl(35, 85%, 48%)" strokeWidth="1" fill="none" />
-          <path d="M60 150 L100 70 L140 150 Z" stroke="hsl(35, 85%, 48%)" strokeWidth="0.7" fill="none" />
-        </svg>
+        {/* Floating illustrations */}
+        <div className="absolute top-32 -right-8 opacity-[0.06] hidden lg:block">
+          <DocumentIllustration className="w-48 h-48" />
+        </div>
+        <div className="absolute bottom-20 -left-4 opacity-[0.06] hidden lg:block">
+          <HandshakeIllustration className="w-44 h-44" />
+        </div>
       </div>
 
       {/* Subtle grid background */}

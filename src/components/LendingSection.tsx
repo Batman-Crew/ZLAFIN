@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import { motion, useInView, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { Home, Building2, Landmark, HardHat, CircleDollarSign, Store, ArrowRight, X, CheckCircle2, BadgePercent, Clock, Banknote, TrendingUp } from "lucide-react";
+import { HouseIllustration, DocumentIllustration, ShieldIllustration } from "./Illustrations3D";
 
 interface SolutionDetail {
   overview: string;
@@ -205,22 +206,26 @@ const LendingSection = () => {
 
   return (
     <section id="lending" className="relative py-24 overflow-hidden page-container">
-      {/* Decorative SVG curvy lines */}
+      {/* Rich background patterns */}
       <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 dot-pattern opacity-50" />
+        <div className="absolute -top-32 -right-32 w-[550px] h-[550px] gradient-orb rounded-full" />
+        <div className="absolute bottom-40 -left-40 w-[450px] h-[450px] gradient-orb-lg rounded-full" />
         <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="none" fill="none">
-          <path d="M-100 200 C200 100, 400 350, 700 250 S1100 100, 1540 300" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.06" fill="none" />
-          <path d="M-100 400 C300 300, 500 550, 800 400 S1200 250, 1540 500" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.04" fill="none" />
-          <path d="M-100 650 C250 550, 600 750, 900 600 S1300 500, 1540 700" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.05" fill="none" />
+          <path d="M-100 200 C200 100, 400 350, 700 250 S1100 100, 1540 300" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.08" />
+          <path d="M-100 400 C300 300, 500 550, 800 400 S1200 250, 1540 500" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.06" />
+          <path d="M-100 650 C250 550, 600 750, 900 600 S1300 500, 1540 700" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.06" />
         </svg>
-        <svg className="absolute top-20 right-0 w-64 h-64 opacity-[0.03]" viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="80" stroke="hsl(35, 85%, 48%)" strokeWidth="1" fill="none" />
-          <circle cx="100" cy="100" r="60" stroke="hsl(35, 85%, 48%)" strokeWidth="0.8" fill="none" />
-          <circle cx="100" cy="100" r="40" stroke="hsl(35, 85%, 48%)" strokeWidth="0.6" fill="none" />
-        </svg>
-        <svg className="absolute bottom-32 left-10 w-48 h-48 opacity-[0.03]" viewBox="0 0 200 200">
-          <rect x="30" y="30" width="140" height="140" rx="20" stroke="hsl(35, 85%, 48%)" strokeWidth="1" fill="none" transform="rotate(15 100 100)" />
-          <rect x="50" y="50" width="100" height="100" rx="15" stroke="hsl(35, 85%, 48%)" strokeWidth="0.8" fill="none" transform="rotate(30 100 100)" />
-        </svg>
+        {/* Floating illustrations */}
+        <div className="absolute top-28 -right-6 opacity-[0.07] hidden lg:block">
+          <HouseIllustration className="w-52 h-52" />
+        </div>
+        <div className="absolute bottom-60 -left-4 opacity-[0.06] hidden lg:block">
+          <DocumentIllustration className="w-44 h-44" />
+        </div>
+        <div className="absolute top-[55%] right-8 opacity-[0.05] hidden xl:block">
+          <ShieldIllustration className="w-36 h-36" />
+        </div>
       </div>
 
       <div className="container mx-auto px-6" ref={ref}>

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { Shield, Zap, TrendingUp, Users, Eye, BarChart3 } from "lucide-react";
-import { BuildingIllustration, ShieldIllustration, HandshakeIllustration } from "./Illustrations3D";
+import { BuildingIllustration, ShieldIllustration, HandshakeIllustration, KeyIllustration } from "./Illustrations3D";
 
 
 const features = [
@@ -47,21 +47,20 @@ const AboutSection = () => {
 
   return (
     <section id="about" className="relative py-24 overflow-hidden page-container">
-      {/* Decorative SVG curvy lines & shapes */}
+      {/* Rich background patterns */}
       <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 dot-pattern opacity-50" />
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] gradient-orb rounded-full" />
+        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] gradient-orb-lg rounded-full" />
         <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="none" fill="none">
-          <path d="M-50 100 C300 20, 500 280, 850 150 S1200 50, 1500 200" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.05" />
-          <path d="M-50 500 C200 420, 450 600, 750 480 S1100 380, 1500 520" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.04" />
-          <path d="M-50 780 C350 700, 650 850, 1000 730 S1350 650, 1500 800" stroke="hsl(35, 85%, 48%)" strokeWidth="1.2" strokeOpacity="0.05" />
+          <path d="M-50 100 C300 20, 500 280, 850 150 S1200 50, 1500 200" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.07" />
+          <path d="M-50 500 C200 420, 450 600, 750 480 S1100 380, 1500 520" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.05" />
+          <path d="M-50 780 C350 700, 650 850, 1000 730 S1350 650, 1500 800" stroke="hsl(35, 85%, 48%)" strokeWidth="1.2" strokeOpacity="0.06" />
         </svg>
-        <svg className="absolute top-40 left-8 w-56 h-56 opacity-[0.025]" viewBox="0 0 200 200">
-          <circle cx="100" cy="100" r="90" stroke="hsl(35, 85%, 48%)" strokeWidth="0.8" fill="none" strokeDasharray="8 12" />
-          <circle cx="100" cy="100" r="65" stroke="hsl(35, 85%, 48%)" strokeWidth="0.6" fill="none" strokeDasharray="6 10" />
-        </svg>
-        <svg className="absolute bottom-20 right-12 w-44 h-44 opacity-[0.03]" viewBox="0 0 200 200">
-          <path d="M20 100 Q100 20, 180 100 Q100 180, 20 100" stroke="hsl(35, 85%, 48%)" strokeWidth="1" fill="none" />
-          <path d="M50 100 Q100 50, 150 100 Q100 150, 50 100" stroke="hsl(35, 85%, 48%)" strokeWidth="0.7" fill="none" />
-        </svg>
+        {/* Decorative floating illustration */}
+        <div className="absolute -bottom-10 -right-10 opacity-[0.06] hidden lg:block">
+          <KeyIllustration className="w-60 h-60" />
+        </div>
       </div>
 
       <div className="container mx-auto px-6" ref={ref}>

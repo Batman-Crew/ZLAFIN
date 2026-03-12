@@ -31,18 +31,22 @@ const ContactSection = () => {
 
   return (
     <section id="contact" className="relative py-24 overflow-hidden page-container">
-      {/* Decorative SVG curvy lines & shapes */}
+      {/* Rich background patterns */}
       <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 cross-pattern opacity-50" />
+        <div className="absolute -top-20 right-0 w-[500px] h-[500px] gradient-orb rounded-full" />
+        <div className="absolute bottom-0 -left-32 w-[400px] h-[400px] gradient-orb-lg rounded-full" />
         <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="none" fill="none">
-          <path d="M-70 160 C260 60, 480 320, 780 190 S1150 60, 1510 220" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.06" />
-          <path d="M-70 480 C320 390, 560 590, 860 450 S1200 340, 1510 510" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.04" />
+          <path d="M-70 160 C260 60, 480 320, 780 190 S1150 60, 1510 220" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.08" />
+          <path d="M-70 480 C320 390, 560 590, 860 450 S1200 340, 1510 510" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.06" />
         </svg>
-        <svg className="absolute top-16 right-16 w-48 h-48 opacity-[0.025]" viewBox="0 0 200 200">
+        {/* Geometric accents */}
+        <svg className="absolute top-16 right-16 w-56 h-56 opacity-[0.05]" viewBox="0 0 200 200">
           <circle cx="100" cy="100" r="85" stroke="hsl(35, 85%, 48%)" strokeWidth="0.8" fill="none" strokeDasharray="4 8" />
           <circle cx="100" cy="100" r="55" stroke="hsl(35, 85%, 48%)" strokeWidth="0.6" fill="none" strokeDasharray="3 6" />
           <circle cx="100" cy="100" r="25" stroke="hsl(35, 85%, 48%)" strokeWidth="0.5" fill="none" />
         </svg>
-        <svg className="absolute bottom-16 left-12 w-36 h-36 opacity-[0.03]" viewBox="0 0 200 200">
+        <svg className="absolute bottom-16 left-12 w-40 h-40 opacity-[0.05]" viewBox="0 0 200 200">
           <path d="M100 20 L20 180 L180 180 Z" stroke="hsl(35, 85%, 48%)" strokeWidth="0.8" fill="none" />
           <path d="M100 60 L50 160 L150 160 Z" stroke="hsl(35, 85%, 48%)" strokeWidth="0.6" fill="none" />
         </svg>

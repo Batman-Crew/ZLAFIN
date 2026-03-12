@@ -223,6 +223,46 @@
     transition: opacity 0.3s ease;
   }
 
+  /* Dot grid pattern */
+  .dot-pattern {
+    background-image: radial-gradient(circle, hsla(35, 85%, 48%, 0.08) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .dot-pattern-lg {
+    background-image: radial-gradient(circle, hsla(35, 85%, 48%, 0.06) 1.5px, transparent 1.5px);
+    background-size: 48px 48px;
+  }
+
+  /* Cross-hatch pattern */
+  .cross-pattern {
+    background-image:
+      linear-gradient(45deg, hsla(35, 85%, 48%, 0.03) 1px, transparent 1px),
+      linear-gradient(-45deg, hsla(35, 85%, 48%, 0.03) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* Gradient mesh blobs */
+  .gradient-orb {
+    background: radial-gradient(ellipse at center, hsla(35, 85%, 48%, 0.08) 0%, transparent 70%);
+  }
+
+  .gradient-orb-lg {
+    background: radial-gradient(ellipse at center, hsla(35, 85%, 48%, 0.06) 0%, transparent 60%);
+  }
+
+  /* Topographic wave lines */
+  .topo-pattern {
+    background-image:
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 60px,
+        hsla(35, 85%, 48%, 0.03) 60px,
+        hsla(35, 85%, 48%, 0.03) 61px
+      );
+  }
+
   /* Section backgrounds with subtle gradients */
   section:nth-child(even) {
     position: relative;

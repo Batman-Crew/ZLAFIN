@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import { ShieldCheck, Percent, PieChart, FileText, Lock } from "lucide-react";
+import { CoinStackIllustration, WalletIllustration } from "./Illustrations3D";
 
 const benefits = [
   { icon: ShieldCheck, title: "Secured by Real Estate", desc: "Capital protected by Canadian real estate collateral" },
@@ -62,20 +63,23 @@ const InvestmentSection = () => {
 
   return (
     <section id="invest" className="relative py-24 overflow-hidden page-container">
-      {/* Decorative SVG curvy lines & shapes */}
+      {/* Rich background patterns */}
       <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 dot-pattern-lg opacity-50" />
+        <div className="absolute -top-20 -left-32 w-[500px] h-[500px] gradient-orb rounded-full" />
+        <div className="absolute bottom-20 -right-40 w-[550px] h-[550px] gradient-orb-lg rounded-full" />
         <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="none" fill="none">
-          <path d="M-60 120 C280 30, 520 300, 820 170 S1180 30, 1500 180" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.05" />
-          <path d="M-60 450 C350 360, 580 560, 880 420 S1220 310, 1500 480" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.04" />
-          <path d="M-60 720 C300 640, 650 800, 1000 680 S1350 580, 1500 750" stroke="hsl(35, 85%, 48%)" strokeWidth="1.2" strokeOpacity="0.05" />
+          <path d="M-60 120 C280 30, 520 300, 820 170 S1180 30, 1500 180" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.07" />
+          <path d="M-60 450 C350 360, 580 560, 880 420 S1220 310, 1500 480" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.05" />
+          <path d="M-60 720 C300 640, 650 800, 1000 680 S1350 580, 1500 750" stroke="hsl(35, 85%, 48%)" strokeWidth="1.2" strokeOpacity="0.06" />
         </svg>
-        <svg className="absolute top-28 left-12 w-52 h-52 opacity-[0.025]" viewBox="0 0 200 200">
-          <ellipse cx="100" cy="100" rx="90" ry="60" stroke="hsl(35, 85%, 48%)" strokeWidth="0.8" fill="none" />
-          <ellipse cx="100" cy="100" rx="60" ry="90" stroke="hsl(35, 85%, 48%)" strokeWidth="0.8" fill="none" />
-        </svg>
-        <svg className="absolute bottom-24 right-8 w-40 h-40 opacity-[0.03]" viewBox="0 0 200 200">
-          <path d="M100 10 C155 10, 190 55, 190 100 C190 145, 155 190, 100 190 C60 190, 30 170, 50 130 C70 90, 40 55, 100 10 Z" stroke="hsl(35, 85%, 48%)" strokeWidth="1" fill="none" />
-        </svg>
+        {/* Floating illustrations */}
+        <div className="absolute top-24 -right-4 opacity-[0.07] hidden lg:block">
+          <CoinStackIllustration className="w-48 h-52" />
+        </div>
+        <div className="absolute bottom-32 -left-4 opacity-[0.06] hidden lg:block">
+          <WalletIllustration className="w-44 h-44" />
+        </div>
       </div>
 
       <div className="container mx-auto px-6" ref={ref}>

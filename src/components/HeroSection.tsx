@@ -89,6 +89,23 @@ const HeroSection = () => {
 
   return (
     <section ref={ref} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Decorative SVG curvy lines */}
+      <div className="absolute inset-0 -z-[1] pointer-events-none overflow-hidden">
+        <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="none" fill="none">
+          <path d="M0 150 Q360 50, 720 200 T1440 120" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.06" />
+          <path d="M0 350 Q400 250, 800 400 T1440 320" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.04" />
+          <path d="M0 600 Q350 500, 700 650 T1440 580" stroke="hsl(35, 85%, 48%)" strokeWidth="1.2" strokeOpacity="0.05" />
+        </svg>
+        <svg className="absolute top-16 right-16 w-72 h-72 opacity-[0.025]" viewBox="0 0 300 300">
+          <path d="M150 10 L280 90 L250 240 L50 240 L20 90 Z" stroke="hsl(35, 85%, 48%)" strokeWidth="1" fill="none" />
+          <path d="M150 50 L240 110 L220 210 L80 210 L60 110 Z" stroke="hsl(35, 85%, 48%)" strokeWidth="0.7" fill="none" />
+        </svg>
+        <svg className="absolute bottom-24 left-8 w-40 h-40 opacity-[0.03]" viewBox="0 0 200 200">
+          <path d="M100 20 L180 100 L100 180 L20 100 Z" stroke="hsl(35, 85%, 48%)" strokeWidth="1" fill="none" />
+          <path d="M100 50 L150 100 L100 150 L50 100 Z" stroke="hsl(35, 85%, 48%)" strokeWidth="0.7" fill="none" />
+        </svg>
+      </div>
+
       {/* 3D scene – contained to hero only */}
       <Hero3DScene />
 

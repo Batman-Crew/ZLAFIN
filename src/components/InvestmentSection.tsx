@@ -62,6 +62,22 @@ const InvestmentSection = () => {
 
   return (
     <section id="invest" className="relative py-24 overflow-hidden page-container">
+      {/* Decorative SVG curvy lines & shapes */}
+      <div className="absolute inset-0 -z-10 pointer-events-none overflow-hidden">
+        <svg className="absolute top-0 left-0 w-full h-full" viewBox="0 0 1440 900" preserveAspectRatio="none" fill="none">
+          <path d="M-60 120 C280 30, 520 300, 820 170 S1180 30, 1500 180" stroke="hsl(35, 85%, 48%)" strokeWidth="1.5" strokeOpacity="0.05" />
+          <path d="M-60 450 C350 360, 580 560, 880 420 S1220 310, 1500 480" stroke="hsl(35, 85%, 48%)" strokeWidth="1" strokeOpacity="0.04" />
+          <path d="M-60 720 C300 640, 650 800, 1000 680 S1350 580, 1500 750" stroke="hsl(35, 85%, 48%)" strokeWidth="1.2" strokeOpacity="0.05" />
+        </svg>
+        <svg className="absolute top-28 left-12 w-52 h-52 opacity-[0.025]" viewBox="0 0 200 200">
+          <ellipse cx="100" cy="100" rx="90" ry="60" stroke="hsl(35, 85%, 48%)" strokeWidth="0.8" fill="none" />
+          <ellipse cx="100" cy="100" rx="60" ry="90" stroke="hsl(35, 85%, 48%)" strokeWidth="0.8" fill="none" />
+        </svg>
+        <svg className="absolute bottom-24 right-8 w-40 h-40 opacity-[0.03]" viewBox="0 0 200 200">
+          <path d="M100 10 C155 10, 190 55, 190 100 C190 145, 155 190, 100 190 C60 190, 30 170, 50 130 C70 90, 40 55, 100 10 Z" stroke="hsl(35, 85%, 48%)" strokeWidth="1" fill="none" />
+        </svg>
+      </div>
+
       <div className="container mx-auto px-6" ref={ref}>
         {/* Header */}
         <motion.div

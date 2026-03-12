@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
-import ScrollProgress from "./ScrollProgress";
 
 const navItems = [
   { label: "Home", href: "/" },
@@ -25,9 +24,7 @@ const GlossyNavbar = () => {
   }, []);
 
   return (
-    <>
-      <ScrollProgress />
-      <motion.nav
+    <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.8, ease: [0.23, 1, 0.32, 1] }}
@@ -123,7 +120,6 @@ const GlossyNavbar = () => {
           )}
         </AnimatePresence>
       </motion.nav>
-    </>
   );
 };
 

@@ -1,7 +1,36 @@
 import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { Mail, Phone, MapPin, Clock, Send, CheckCircle } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Send, Loader2 } from "lucide-react";
 import { GlobeIllustration } from "./Illustrations3D";
+import { toast } from "@/components/ui/sonner";
+
+const COUNTRIES = [
+  { code: "CA", name: "Canada", prefix: "+1", flag: "🇨🇦" },
+  { code: "US", name: "United States", prefix: "+1", flag: "🇺🇸" },
+  { code: "GB", name: "United Kingdom", prefix: "+44", flag: "🇬🇧" },
+  { code: "IN", name: "India", prefix: "+91", flag: "🇮🇳" },
+  { code: "AU", name: "Australia", prefix: "+61", flag: "🇦🇺" },
+  { code: "AE", name: "UAE", prefix: "+971", flag: "🇦🇪" },
+  { code: "DE", name: "Germany", prefix: "+49", flag: "🇩🇪" },
+  { code: "FR", name: "France", prefix: "+33", flag: "🇫🇷" },
+  { code: "SG", name: "Singapore", prefix: "+65", flag: "🇸🇬" },
+  { code: "CN", name: "China", prefix: "+86", flag: "🇨🇳" },
+  { code: "JP", name: "Japan", prefix: "+81", flag: "🇯🇵" },
+  { code: "MX", name: "Mexico", prefix: "+52", flag: "🇲🇽" },
+  { code: "BR", name: "Brazil", prefix: "+55", flag: "🇧🇷" },
+  { code: "ZA", name: "South Africa", prefix: "+27", flag: "🇿🇦" },
+  { code: "NZ", name: "New Zealand", prefix: "+64", flag: "🇳🇿" },
+  { code: "PK", name: "Pakistan", prefix: "+92", flag: "🇵🇰" },
+  { code: "BD", name: "Bangladesh", prefix: "+880", flag: "🇧🇩" },
+  { code: "LK", name: "Sri Lanka", prefix: "+94", flag: "🇱🇰" },
+  { code: "PH", name: "Philippines", prefix: "+63", flag: "🇵🇭" },
+  { code: "NG", name: "Nigeria", prefix: "+234", flag: "🇳🇬" },
+  { code: "KE", name: "Kenya", prefix: "+254", flag: "🇰🇪" },
+  { code: "IT", name: "Italy", prefix: "+39", flag: "🇮🇹" },
+  { code: "ES", name: "Spain", prefix: "+34", flag: "🇪🇸" },
+  { code: "NL", name: "Netherlands", prefix: "+31", flag: "🇳🇱" },
+  { code: "SA", name: "Saudi Arabia", prefix: "+966", flag: "🇸🇦" },
+];
 
 const ContactSection = () => {
   const ref = useRef(null);
@@ -10,16 +39,59 @@ const ContactSection = () => {
     name: "",
     email: "",
     phone: "",
+    countryCode: "CA",
     purpose: "Mortgage",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const selectedCountry = COUNTRIES.find((c) => c.code === formData.countryCode) ?? COUNTRIES[0];
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
+    setLoading(true);
+
+    const fullPhone = `${selectedCountry.prefix}${formData.phone}`;
+
+    try {
+      const apiKey = import.meta.env.VITE_FRAPPE_API_KEY;
+      const apiSecret = import.meta.env.VITE_FRAPPE_API_SECRET;
+
+      const res = await fetch("https://scas.balamurugandev.in/api/resource/CRM Lead", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `token ${apiKey}:${apiSecret}`,
+        },
+        body: JSON.stringify({
+          lead_name: formData.name,
+          email_id: formData.email,
+          mobile_no: fullPhone,
+          source: "Website",
+          notes: formData.message,
+          custom_purpose: formData.purpose,
+        }),
+      });
+
+      if (!res.ok) {
+        const data = await res.json().catch(() => ({}));
+        throw new Error(data?.exc_type || data?.exception || "Submission failed. Please try again.");
+      }
+
+      toast.success("Application submitted!", {
+        description: "Our team will contact you in 2 to 3 working days.",
+        duration: 5000,
+      });
+      setFormData({ name: "", email: "", phone: "", countryCode: "CA", purpose: "Mortgage", message: "" });
+    } catch (err: unknown) {
+      toast.error("Failed to send message", {
+        description: err instanceof Error ? err.message : "Something went wrong. Please try again.",
+        duration: 5000,
+      });
+    } finally {
+      setLoading(false);
+    }
   };
 
   const contactInfo = [
@@ -152,30 +224,62 @@ const ContactSection = () => {
                   />
                 </div>
               </div>
+              {/* Country + Phone row */}
               <div className="grid sm:grid-cols-2 gap-5">
+                {/* Country selector */}
                 <div className="relative">
-                  <motion.label
-                    className={`absolute left-4 transition-all duration-300 pointer-events-none ${
-                      focusedField === "phone" || formData.phone
-                        ? "top-1 text-xs text-primary"
-                        : "top-3.5 text-sm text-muted-foreground"
-                    }`}
+                  <label className="absolute left-4 top-1 text-xs text-primary pointer-events-none z-10">
+                    Country
+                  </label>
+                  <select
+                    value={formData.countryCode}
+                    onChange={(e) => setFormData({ ...formData, countryCode: e.target.value })}
+                    className="w-full px-4 pt-5 pb-2 rounded-xl bg-secondary/30 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all appearance-none"
                   >
-                    Phone
-                  </motion.label>
-                  <input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    onFocus={() => setFocusedField("phone")}
-                    onBlur={() => setFocusedField(null)}
-                    className="w-full px-4 pt-5 pb-2 rounded-xl bg-secondary/30 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all"
-                  />
+                    {COUNTRIES.map((c) => (
+                      <option key={c.code} value={c.code}>
+                        {c.flag} {c.name} ({c.prefix})
+                      </option>
+                    ))}
+                  </select>
                 </div>
+
+                {/* Phone with prefix badge */}
+                <div className="relative flex items-stretch rounded-xl overflow-hidden border border-border focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary/30 transition-all bg-secondary/30">
+                  <span className="flex items-center px-3 text-sm font-medium text-primary bg-primary/8 border-r border-border shrink-0 select-none">
+                    {selectedCountry.flag} {selectedCountry.prefix}
+                  </span>
+                  <div className="relative flex-1">
+                    <motion.label
+                      className={`absolute left-3 transition-all duration-300 pointer-events-none ${
+                        focusedField === "phone" || formData.phone
+                          ? "top-1 text-xs text-primary"
+                          : "top-3.5 text-sm text-muted-foreground"
+                      }`}
+                    >
+                      Phone
+                    </motion.label>
+                    <input
+                      type="tel"
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                      onFocus={() => setFocusedField("phone")}
+                      onBlur={() => setFocusedField(null)}
+                      className="w-full px-3 pt-5 pb-2 bg-transparent text-foreground focus:outline-none"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              {/* Purpose row */}
+              <div className="relative">
+                <label className="absolute left-4 top-1 text-xs text-primary pointer-events-none z-10">
+                  Purpose
+                </label>
                 <select
                   value={formData.purpose}
                   onChange={(e) => setFormData({ ...formData, purpose: e.target.value })}
-                  className="w-full px-4 py-3.5 rounded-xl bg-secondary/30 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all"
+                  className="w-full px-4 pt-5 pb-2 rounded-xl bg-secondary/30 border border-border text-foreground focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/30 transition-all appearance-none"
                 >
                   <option value="Mortgage">Mortgage</option>
                   <option value="Investment">Investment</option>
@@ -202,14 +306,15 @@ const ContactSection = () => {
               </div>
               <motion.button
                 type="submit"
-                className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-lg flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_4px_30px_hsla(35,85%,48%,0.3)] hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden group"
+                disabled={loading}
+                className="w-full py-4 rounded-xl bg-primary text-primary-foreground font-semibold text-lg flex items-center justify-center gap-2 transition-all duration-300 hover:shadow-[0_4px_30px_hsla(35,85%,48%,0.3)] hover:scale-[1.02] active:scale-[0.98] relative overflow-hidden group disabled:opacity-70 disabled:cursor-not-allowed disabled:hover:scale-100"
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="relative z-10 flex items-center gap-2">
-                  {submitted ? (
+                  {loading ? (
                     <>
-                      <CheckCircle className="w-5 h-5" />
-                      Message Sent!
+                      <Loader2 className="w-5 h-5 animate-spin" />
+                      Sending...
                     </>
                   ) : (
                     <>

@@ -68,7 +68,6 @@ const ContactSection = () => {
           lead_name: formData.name,
           email_id: formData.email,
           mobile_no: fullPhone,
-          source: "Website",
           notes: formData.message,
           custom_purpose: formData.purpose,
         }),
